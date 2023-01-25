@@ -11,6 +11,23 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+
+#creating a route where the path is "/about"
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
+
+@app.route("/careers")
+def careers():
+    return render_template("careers.html")
+
+
 #settings arguments for the the app
 #debug=True allows easier debugging at later stages
 if __name__ == "__main__":

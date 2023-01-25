@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Flask</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <!--calling url_for function that looks up "index"-->
+            <li><a href="{{url_for('index') }}">Home</a></li>
+            <li><a href="{{url_for('about') }}">About</a></li>
+            <li><a href="{{url_for('contact') }}">Contact Us</a></li>
+            <li><a href="{{url_for('careers') }}">Careers</a></li>
+
+        </ul>
+    </nav>
+<!-- defining a block we can inject content into-->
+<!-- reduces repeated code in home/about/contact page.-->
+    {% block content %}
+    {% endblock %}
+
+
+</body>
+</html>
