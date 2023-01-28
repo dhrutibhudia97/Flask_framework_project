@@ -1,6 +1,8 @@
 import os 
+import json
 #import flask class
 from flask import Flask, render_template
+
 
 #creating instance of flask class and storing in variable "app"
 #first argument for the flask class is the "name"
@@ -15,7 +17,12 @@ def index():
 #creating a route where the path is "/about"
 @app.route("/about")
 def about():
-    return render_template("about.html", page_title="About", list_of_numbers=[1, 2, 3])
+    data = []
+    #python needs to open the json file and "r" its a read only file.
+    with open("data/company.json", "r") as json_data:
+        data = json.load(json_data)
+    
+    return render_template("about.html", page_title="About", company=data)
 
 
 @app.route("/contact")
