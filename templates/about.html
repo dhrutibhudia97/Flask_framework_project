@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
+
+    {% for number in list_of_numbers %}
+        <p>{{ number }}</p>
+    {% endfor %}
+
     <h2>{{ page_title }}</h2>
     <p>
         Something about lord of the rings...Thorin and Company were a group of thirteen Dwarves, the Wizard Gandalf, and
