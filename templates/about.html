@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 
-    {{ company[1] ["name"]}}
-
     <h2>{{ page_title }}</h2>
     <p>
         Something about lord of the rings...Thorin and Company were a group of thirteen Dwarves, the Wizard Gandalf, and
@@ -10,27 +8,20 @@
         kingdom of the Lonely Mountain from the dragon Smaug.
     </p>
 
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h3> Thorin Oakenshield </h3>
-            <p>Thorin II Oakenshield is the Leader of the Company, the King of Durin's Folk and former Prince of Erebor,
-                has many of the speaking roles and is known for combat achievements, killing Orcs on countless
-                occasions. He often acts in a confrontational manner, but is a great leader among the Dwarves.</p>
+    {% for member in company %}
 
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h3>{{ member.name }}</h3>
+                <p> {{ member.description }}</p>
+            </div>
+            <div class="col-md-5">
+                <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
+            </div>
         </div>
-        <div class="col-md-5">
-            <img src="https://static.wikia.nocookie.net/lotr/images/3/3f/ThorinBIG.jpg" alt="">
-        </div>
-    </div>
-    <div class="row featurette">
-        <div class="col-md-5">
-            <img src="https://static.wikia.nocookie.net/lotr/images/b/b4/The-Hobbit-Fili-and-Kili.jpg" alt="">
-        </div>
-        <div class="col-md-7">
-            <h3> Fili & Kili </h3>
-            <p>Fíli and Kíli were brothers, the youngest of the thirteen Dwarves who set out with Thorin Oakenshield's
-                company, along with Gandalf and Bilbo Baggins, to reclaim the Lonely Mountain from the dragon Smaug.</p>
-        </div>
-    </div>
-    
+
+        <hr class="featurette-divider">
+
+    {% endfor %}
+
 {% endblock %}

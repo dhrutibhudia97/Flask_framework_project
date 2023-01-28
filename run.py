@@ -21,7 +21,6 @@ def about():
     #python needs to open the json file and "r" its a read only file.
     with open("data/company.json", "r") as json_data:
         data = json.load(json_data)
-    
     return render_template("about.html", page_title="About", company=data)
 
 
