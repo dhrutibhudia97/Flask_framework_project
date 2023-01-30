@@ -1,12 +1,16 @@
 import os 
 import json
 #import flask class
-from flask import Flask, render_template, request
-
+#import flash displays non permenant messages to the user
+from flask import Flask, render_template, request, flash
+#only want to import env if system can find env.py file
+if os.path.exists("env.py"):
+    import env
 
 #creating instance of flask class and storing in variable "app"
 #first argument for the flask class is the "name"
 app = Flask(__name__)
+app.secret_key = os.environ.get("SECRET_KEY")
 
 #app.route decorator - way of wrapping functions 
 @app.route("/")
@@ -45,8 +49,9 @@ def about():
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     if request.method == "POST":
-        print(request.form.get("name"))
-        print(request.form["email"])
+        flash("Thanks {}, we have recieved your message!".format(
+            request.form.get("name")))
+        
         #how to access data from the backend of our site
     return render_template("contact.html", page_title="Contact")
 
