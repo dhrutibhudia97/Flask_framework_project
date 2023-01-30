@@ -13,6 +13,24 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+#route decorator, will pass data from the url path into the view below
+@app.route("/about/<member_name>")
+#member_name taken from above as an argument
+def about_member(member_name):
+    #member will store data in for later, open company.json file as read only
+    member = {}
+    with open("data/company.json", "r") as json_data:
+        # then we pass through data that we have pulled and converted into json.
+        data = json.load(json_data)
+        # iterate through data array
+        for obj in data:
+            # check if object url key is equal to name passed through url path.
+            if obj["url"] == member_name:
+                #if they do match we want our empty member{} to be equal to the object in this loop instance.
+                member = obj
+    #click up heading titles in about page leads you to new page
+    #with first member refering to member.html, second member is member object created about.
+    return render_template("member.html", member=member)
 
 #creating a route where the path is "/about"
 @app.route("/about")
