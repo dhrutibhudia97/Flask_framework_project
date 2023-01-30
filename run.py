@@ -1,7 +1,7 @@
 import os 
 import json
 #import flask class
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 
 #creating instance of flask class and storing in variable "app"
@@ -42,11 +42,16 @@ def about():
     return render_template("about.html", page_title="About", company=data)
 
 
-@app.route("/contact")
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
+    if request.method == "POST":
+        print(request.form.get("name"))
+        print(request.form["email"])
+        #how to access data from the backend of our site
     return render_template("contact.html", page_title="Contact")
 
 
+#
 @app.route("/careers")
 def careers():
     return render_template("careers.html", page_title="Careers")
